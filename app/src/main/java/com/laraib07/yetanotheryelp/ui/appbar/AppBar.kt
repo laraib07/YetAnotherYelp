@@ -9,9 +9,15 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.focus.FocusDirection
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
@@ -76,6 +82,13 @@ fun SearchAppBar(
     onCloseClicked: () -> Unit,
     onSearchClicked: (String) -> Unit
 ) {
+    val focusManager = LocalFocusManager.current
+    val textFieldFocusRequester = remember { FocusRequester() }
+
+    SideEffect {
+        textFieldFocusRequester.requestFocus()
+    }
+
     Surface(
         modifier = Modifier
             .fillMaxWidth()
@@ -84,7 +97,9 @@ fun SearchAppBar(
         color = MaterialTheme.colors.primary
     ) {
         TextField(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .focusRequester(textFieldFocusRequester),
             value = text,
             onValueChange = {
                 onTextChange(it)
@@ -136,6 +151,7 @@ fun SearchAppBar(
             keyboardActions = KeyboardActions(
                 onSearch = {
                     onSearchClicked(text)
+                    focusManager.clearFocus()
                 }
             ),
             colors = TextFieldDefaults.textFieldColors(

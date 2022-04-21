@@ -5,22 +5,31 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.laraib07.yetanotheryelp.ui.home.HomeScreen
+import com.laraib07.yetanotheryelp.ui.appbar.SearchViewModel
+import com.laraib07.yetanotheryelp.ui.detail.DetailScreen
+import com.laraib07.yetanotheryelp.ui.result.ResultScreen
 
 @Composable
-fun MainNavGraph(navController: NavHostController) {
+fun MainNavGraph(
+    navController: NavHostController,
+    searchViewModel: SearchViewModel
+) {
+    val sharedViewModel: SharedViewModel = viewModel()
     NavHost(
         navController = navController,
-        startDestination = Screen.Home.route
+        startDestination = Screen.Result.route
     ) {
-        composable(route = Screen.Home.route) {
-            HomeScreen()
-        }
         composable(route = Screen.Result.route) {
-
+            ResultScreen(
+                searchViewModel = searchViewModel,
+                sharedViewModel = sharedViewModel,
+                navController = navController
+            )
         }
         composable(route = Screen.Detail.route) {
-
+            DetailScreen(
+                sharedViewModel = sharedViewModel,
+            )
         }
     }
 }

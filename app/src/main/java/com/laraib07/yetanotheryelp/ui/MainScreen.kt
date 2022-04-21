@@ -11,11 +11,11 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import com.laraib07.yetanotheryelp.ui.appbar.AppBar
 import com.laraib07.yetanotheryelp.ui.appbar.SearchWidgetState
-import com.laraib07.yetanotheryelp.ui.home.SearchWidgetViewModel
+import com.laraib07.yetanotheryelp.ui.appbar.SearchViewModel
 import com.laraib07.yetanotheryelp.ui.theme.YetAnotherYelpTheme
 
 @Composable
-fun MainScreen(searchViewModel: SearchWidgetViewModel) {
+fun MainScreen(searchViewModel: SearchViewModel) {
     val navController = rememberNavController()
     val searchWidgetState by searchViewModel.searchWidgetState
     val searchTextState by searchViewModel.searchTextState
@@ -39,6 +39,10 @@ fun MainScreen(searchViewModel: SearchWidgetViewModel) {
                         },
                         onSearchClicked = {
                             Log.d("SearchClicked", it)
+                            if(searchTextState != searchViewModel.queryState.value) {
+                                searchViewModel.businessList = ArrayList()
+                            }
+                            searchViewModel.updateQueryState(newValue = it)
                             searchViewModel.updateSearchWidgetState(SearchWidgetState.CLOSED)
                         },
                         onSearchTriggered = {
@@ -48,7 +52,10 @@ fun MainScreen(searchViewModel: SearchWidgetViewModel) {
                     )
                 },
             ) {
-                MainNavGraph(navController = navController)
+                MainNavGraph(
+                    navController = navController,
+                    searchViewModel = searchViewModel
+                )
             }
         }
     }
