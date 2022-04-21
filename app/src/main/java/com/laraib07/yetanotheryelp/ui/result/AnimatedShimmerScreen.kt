@@ -4,12 +4,9 @@ import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.primarySurface
+import androidx.compose.material.Card
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
@@ -53,35 +50,50 @@ fun AnimatedShimmer() {
 
 @Composable
 fun ShimmerGridItem(brush: Brush) {
-    Row(
+    Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(all = 10.dp),
-        verticalAlignment = Alignment.CenterVertically
+            .wrapContentHeight()
+            .padding(8.dp, 4.dp),
+        elevation = 5.dp,
+        shape = RoundedCornerShape(10.dp)
     ) {
-        Spacer(
-            modifier = Modifier
-                .size(80.dp)
-                .clip(CircleShape)
-                .background(brush)
-        )
-        Spacer(modifier = Modifier.width(10.dp))
-        Column(verticalArrangement = Arrangement.Center) {
+        Row(
+            modifier = Modifier.padding(8.dp)
+        ) {
             Spacer(
                 modifier = Modifier
-                    .height(20.dp)
-                    .fillMaxWidth(0.7f)
-                    .clip(RoundedCornerShape(10.dp))
+                    .size(100.dp)
+                    .clip(RoundedCornerShape(25f))
                     .background(brush)
             )
-            Spacer(modifier = Modifier.height(10.dp))
-            Spacer(
-                modifier = Modifier
-                    .height(20.dp)
-                    .fillMaxWidth(0.9f)
-                    .clip(RoundedCornerShape(10.dp))
-                    .background(brush)
-            )
+            Column {
+                Spacer(
+                    modifier = Modifier
+                        .height(25.dp)
+                        .fillMaxWidth(0.9f)
+                        .padding(vertical = 4.dp, horizontal = 8.dp)
+                        .clip(RoundedCornerShape(10.dp))
+                        .background(brush)
+                )
+                Spacer(
+                    modifier = Modifier
+                        .height(25.dp)
+                        .padding(vertical = 4.dp, horizontal = 8.dp)
+
+                        .fillMaxWidth(0.7f)
+                        .clip(RoundedCornerShape(10.dp))
+                        .background(brush)
+                )
+                Spacer(
+                    modifier = Modifier
+                        .height(25.dp)
+                        .fillMaxWidth(0.5f)
+                        .padding(vertical = 4.dp, horizontal = 8.dp)
+                        .clip(RoundedCornerShape(10.dp))
+                        .background(brush)
+                )
+            }
         }
     }
 }
