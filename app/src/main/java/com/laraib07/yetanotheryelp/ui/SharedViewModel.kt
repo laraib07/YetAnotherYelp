@@ -4,13 +4,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import com.laraib07.yetanotheryelp.model.YelpRestaurant
+import com.laraib07.yetanotheryelp.model.YelpBusiness
 
 class SharedViewModel : ViewModel() {
-    var business by mutableStateOf<YelpRestaurant?>(null)
+    var business by mutableStateOf<YelpBusiness?>(null)
     private set
 
-    fun addBusiness(newBusiness: YelpRestaurant?) {
+    fun addBusiness(newBusiness: YelpBusiness?) {
         business = newBusiness
     }
 }

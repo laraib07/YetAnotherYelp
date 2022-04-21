@@ -23,14 +23,14 @@ import coil.transform.RoundedCornersTransformation
 import com.laraib07.yetanotheryelp.R
 import com.laraib07.yetanotheryelp.model.YelpCategories
 import com.laraib07.yetanotheryelp.model.YelpLocation
-import com.laraib07.yetanotheryelp.model.YelpRestaurant
+import com.laraib07.yetanotheryelp.model.YelpBusiness
 import com.laraib07.yetanotheryelp.ui.Screen
 import com.laraib07.yetanotheryelp.ui.SharedViewModel
 
 @ExperimentalCoilApi
 @Composable
 fun BusinessItem(
-    business: YelpRestaurant?,
+    business: YelpBusiness?,
     sharedViewModel: SharedViewModel,
     navController: NavHostController
 ) {
@@ -124,7 +124,7 @@ fun BusinessImage(
 @Composable
 fun BusinessItemPreview() {
     BusinessItem(
-        business = YelpRestaurant(
+        business = YelpBusiness(
             name = "Name",
             rating = 4.5,
             categories = listOf(YelpCategories("coffee")),

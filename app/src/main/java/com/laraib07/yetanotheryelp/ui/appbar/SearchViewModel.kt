@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.laraib07.yetanotheryelp.api.YelpApiService
 import com.laraib07.yetanotheryelp.api.YelpApiStatus
-import com.laraib07.yetanotheryelp.model.YelpRestaurant
+import com.laraib07.yetanotheryelp.model.YelpBusiness
 import kotlinx.coroutines.launch
 
 private const val API_KEY = "RyRADNajRFsD8o3HQ98yNm1HJMJs_mE3Z2w5PXCVKKMfMlnOf1pVrDP-hPg0YwrAzB0LaUCDTCWg_hHIC0cfTWdBZXyFmlkUI-GyrB1MAVnkTzv2VfgJ-CymSSUqYnYx"
@@ -26,7 +26,7 @@ class SearchViewModel : ViewModel() {
         mutableStateOf(YelpApiStatus.LOADING)
     val status: State<YelpApiStatus> = _status
 
-    var businessList:List<YelpRestaurant?> by mutableStateOf(listOf())
+    var businessList:List<YelpBusiness?> by mutableStateOf(listOf())
 
     private val yelpApi = YelpApiService.getInstance()
 
@@ -51,7 +51,7 @@ class SearchViewModel : ViewModel() {
                     query,
                     "New York"
                 )
-                businessList = list.restaurants
+                businessList = list.businesses
                 _status.value = YelpApiStatus.DONE
             } catch (e: Exception) {
                 _status.value = YelpApiStatus.ERROR
