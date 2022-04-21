@@ -8,15 +8,20 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.laraib07.yetanotheryelp.ui.appbar.AppBar
 import com.laraib07.yetanotheryelp.ui.appbar.SearchWidgetState
 import com.laraib07.yetanotheryelp.ui.appbar.SearchViewModel
+import com.laraib07.yetanotheryelp.ui.result.ResultScreen
 import com.laraib07.yetanotheryelp.ui.theme.YetAnotherYelpTheme
 
 @Composable
-fun MainScreen(searchViewModel: SearchViewModel) {
-    val navController = rememberNavController()
+fun MainScreen(
+    searchViewModel: SearchViewModel,
+    navController: NavHostController,
+    sharedViewModel: SharedViewModel
+) {
     val searchWidgetState by searchViewModel.searchWidgetState
     val searchTextState by searchViewModel.searchTextState
 
@@ -52,9 +57,10 @@ fun MainScreen(searchViewModel: SearchViewModel) {
                     )
                 },
             ) {
-                MainNavGraph(
-                    navController = navController,
-                    searchViewModel = searchViewModel
+                ResultScreen(
+                    searchViewModel = searchViewModel,
+                    sharedViewModel = sharedViewModel,
+                    navController = navController
                 )
             }
         }
