@@ -19,6 +19,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
+import coil.size.Scale
 import coil.transform.RoundedCornersTransformation
 import com.laraib07.yetanotheryelp.R
 import com.laraib07.yetanotheryelp.model.YelpCategories
@@ -105,6 +106,7 @@ fun BusinessImage(
             builder = {
                 placeholder(R.drawable.ic_placeholder)
                 error(R.drawable.ic_error)
+                scale(Scale.FILL)
                 transformations(
                     RoundedCornersTransformation(roundedCornerRadius)
                 )
@@ -113,8 +115,8 @@ fun BusinessImage(
         Image(
             painter = painter,
             modifier = modifier,
-            contentDescription = "Business Image",
-            contentScale = ContentScale.Crop
+            contentDescription = "Business Image"
+            //contentScale = ContentScale.FillBounds
         )
     }
 }
@@ -129,6 +131,7 @@ fun BusinessItemPreview() {
             rating = 4.5,
             categories = listOf(YelpCategories("coffee")),
             price = "$$",
+            phone = "+91123456789",
             location = YelpLocation("New York"),
             imageUrl = "",
             numReviews = 39

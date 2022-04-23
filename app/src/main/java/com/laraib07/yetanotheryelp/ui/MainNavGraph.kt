@@ -30,6 +30,7 @@ fun MainNavGraph() {
         composable(route = Screen.Detail.route) {
             DetailScreen(
                 sharedViewModel = sharedViewModel,
+                navController = navController
             )
         }
     }

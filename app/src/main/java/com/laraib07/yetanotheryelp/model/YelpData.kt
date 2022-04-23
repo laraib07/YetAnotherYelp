@@ -11,6 +11,7 @@ data class YelpBusiness(
     val name: String?,
     val rating: Double?,
     val price: String?,
+    val phone: String?,
     val categories: List<YelpCategories?>,
     val location: YelpLocation?,
     @SerializedName("image_url") val imageUrl: String?,
