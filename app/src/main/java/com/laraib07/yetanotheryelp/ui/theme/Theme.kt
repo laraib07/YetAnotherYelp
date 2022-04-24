@@ -5,17 +5,21 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.graphics.Color
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 private val DarkColorPalette = darkColors(
-    primary = Purple200,
-    primaryVariant = Purple700,
-    secondary = Teal200
+    primary = Color(0xffff5722),
+    primaryVariant = Color(0xffc41c00),
+    onPrimary = Color.White
 )
 
 private val LightColorPalette = lightColors(
-    primary = Purple500,
-    primaryVariant = Purple700,
-    secondary = Teal200
+    primary = Color(0xffff5722),
+    primaryVariant = Color(0xffc41c00),
+    secondary = Color(0xfffafafa),
+    onPrimary = Color.White
 
     /* Other default colors to override
     background = Color.White,
@@ -38,6 +42,16 @@ fun YetAnotherYelpTheme(
         LightColorPalette
     }
 
+    val systemUiController = rememberSystemUiController()
+
+    SideEffect {
+        systemUiController.setStatusBarColor(
+            colors.primary
+        )
+        systemUiController.setNavigationBarColor(
+            colors.surface
+        )
+    }
     MaterialTheme(
         colors = colors,
         typography = Typography,

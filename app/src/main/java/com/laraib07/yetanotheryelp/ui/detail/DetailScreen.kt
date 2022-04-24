@@ -1,5 +1,6 @@
 package com.laraib07.yetanotheryelp.ui.detail
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -43,7 +44,8 @@ fun DetailScreen(
                             contentDescription = "ArrowBack"
                         )
                     }
-                }
+                },
+                backgroundColor = MaterialTheme.colors.primary
             )
         },
     ) {

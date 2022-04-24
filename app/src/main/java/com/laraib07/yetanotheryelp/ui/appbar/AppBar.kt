@@ -68,10 +68,11 @@ fun DefaultAppBar(
                 Icon(
                     imageVector = Icons.Filled.Search,
                     contentDescription = "Search Icon",
-                    tint = Color.White
+                    tint = MaterialTheme.colors.onPrimary
                 )
             }
-        }
+        },
+        backgroundColor = MaterialTheme.colors.primary
     )
 }
 
@@ -109,7 +110,7 @@ fun SearchAppBar(
                     modifier = Modifier
                         .alpha(ContentAlpha.medium),
                     text = "Search here...",
-                    color = Color.White
+                    color = MaterialTheme.colors.onPrimary
                 )
             },
             textStyle = TextStyle(
@@ -124,7 +125,7 @@ fun SearchAppBar(
                     Icon(
                         imageVector = Icons.Default.Search,
                         contentDescription = "Search Icon",
-                        tint = Color.White
+                        tint = MaterialTheme.colors.onPrimary
                     )
                 }
             },
@@ -141,7 +142,7 @@ fun SearchAppBar(
                     Icon(
                         imageVector = Icons.Default.Close,
                         contentDescription = "Search Icon",
-                        tint = Color.White
+                        tint = MaterialTheme.colors.onPrimary
                     )
                 }
             },
@@ -156,7 +157,7 @@ fun SearchAppBar(
             ),
             colors = TextFieldDefaults.textFieldColors(
                 backgroundColor = Color.Transparent,
-                cursorColor = Color.White.copy(alpha = ContentAlpha.medium)
+                cursorColor = MaterialTheme.colors.onPrimary.copy(alpha = ContentAlpha.medium)
             )
         )
     }
