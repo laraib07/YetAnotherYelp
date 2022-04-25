@@ -4,7 +4,6 @@ This is a MVVM architecture app example written using Jetpack Compose.
 
 # Library Used
 
-- MVVM
 - Jetpack Compose
 - Retrofit
 - Coil
